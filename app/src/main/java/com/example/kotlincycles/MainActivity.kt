@@ -4,13 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -25,6 +30,9 @@ import com.example.kotlincycles.ui.theme.KotlinCyclesTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -67,8 +75,13 @@ fun Equation(modifier: Modifier = Modifier) {
             text = "Расчет выражения",
             fontSize = 24.sp
         )
+        CustomImage(
+            R.drawable.equation,
+            Modifier
+                .aspectRatio(5f)
+        )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
             value = input,
@@ -81,6 +94,16 @@ fun Equation(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
     }
+}
+
+@Composable
+fun CustomImage(image: Int, modifier: Modifier = Modifier) {
+    Image(
+        painter = painterResource(image),
+        contentDescription = null,
+        contentScale = ContentScale.Fit,
+        modifier=modifier
+    )
 }
 
 @Preview(showBackground = true)
