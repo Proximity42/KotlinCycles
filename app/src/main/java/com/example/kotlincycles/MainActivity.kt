@@ -93,6 +93,45 @@ fun Equation(modifier: Modifier = Modifier) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                val inputValueStr = input.trim()
+                val parts: List<String> = inputValueStr.split(".")
+
+                if (parts[0].toInt() % 2 == 1 && parts[0].toInt() < 128 && parts.count() == 1) {
+                    result = "Ошибка. Нельзя делить на 0"
+                    return@Button
+                }
+
+                if (parts.count() > 1) {
+                    val numbers = listOf('1', '2', '3', '4', '5', '6', '7', '8', '9')
+                    for (i in parts[1]) {
+                        if (!numbers.contains(i)
+                            && parts[0].toInt() % 2 == 1 && parts[0].toInt() < 128) {
+                            result = "Ошибка. Нельзя делить на 0"
+                            return@Button
+                        }
+                    }
+                }
+
+                val inputDouble: Double = inputValueStr.toDouble()
+                val resValue = EvalEquation(inputDouble)
+                result = resValue.toString()
+            },
+            modifier = Modifier.height(32.dp)
+        ) {
+            Text("Рассчитать")
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        if (result.isNotEmpty()) {
+            Text(
+                text = result,
+                fontSize = 20.sp,
+            )
+        }
     }
 }
 
