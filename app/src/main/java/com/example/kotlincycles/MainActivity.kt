@@ -69,6 +69,17 @@ fun Equation(modifier: Modifier = Modifier) {
         )
 
         Spacer(modifier = Modifier.height(32.dp))
+
+        OutlinedTextField(
+            value = input,
+            onValueChange = {input = it},
+            label = { Text("Введите действительное число")},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
