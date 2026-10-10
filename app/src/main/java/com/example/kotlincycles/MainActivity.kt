@@ -96,6 +96,22 @@ fun Equation(modifier: Modifier = Modifier) {
     }
 }
 
+fun EvalEquation(value: Double): Double
+{
+    var numerator: Double = 1.0
+    var denominator: Double = 1.0
+
+    for (i in 2..128 step 2) {
+        numerator *= (value - i)
+    }
+
+    for (i in 1..127 step 2) {
+        denominator *= (value - i)
+    }
+    val result = numerator / denominator
+    return result
+}
+
 @Composable
 fun CustomImage(image: Int, modifier: Modifier = Modifier) {
     Image(
